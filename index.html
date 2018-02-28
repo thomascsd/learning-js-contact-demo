@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>contact demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+</head>
+
+<body>
+    <div>
+        <form action="" method="post">
+            <input id="contactName" type="text" placeholder="name">
+            <input id="email" type="text" placeholder="email">
+            <input id="mobile" type="text" placeholder="mobile">
+            <input id="add" type="button" value="submit">
+        </form>
+    </div>
+    <hr>
+    <div>
+        <table id="contactList">
+            <tr>
+                <th></th>
+                <th>name</th>
+                <th>email</th>
+                <th>mobile</th>
+            </tr>
+        </table>
+    </div>
+    <div>
+        <pre id="sendText"></pre>
+        <input id="send" type="button" value="送出">
+    </div>
+    <script src="jquery.min.js"></script>
+    <script src="main.js"></script>
+</body>
+
+</html>
