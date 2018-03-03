@@ -18,8 +18,8 @@ function addContact() {
   var mobile = $('#mobile').val();
 
   var html =
-    '<tr><td><input type="button" value="edit" class="edit-btn"/>' +
-    '<input type="button" value="update" class="update-btn edit-update"/></td>' +
+    '<tr><td><input type="button" value="edit" class="btn btn-primary edit-btn"/>' +
+    '<input type="button" value="update" class="btn btn-primary update-btn edit-update"/></td>' +
     '<td class="edit-name">' +
     '<input type="text" class="edit-update" value="' +
     name +
@@ -61,6 +61,9 @@ function update() {
   changeValue($tr, '.edit-name');
   changeValue($tr, '.edit-email');
   changeValue($tr, '.edit-mobile');
+
+  $tr.find('.edit-update').hide();
+  $tr.find('.edit-text').show();
 }
 
 function changeValue($tr, selector) {
