@@ -1,7 +1,16 @@
-$('#add').on('click', addContact);
+$('#addForm').on('submit', add);
 $('#send').on('click', send);
 $(document).on('click', '.edit-btn', edit);
 $(document).on('click', '.update-btn', update);
+
+$('#addForm').validate();
+
+function add(e) {
+  e.preventDefault();
+  if ($('#addForm').valid()) {
+    addContact();
+  }
+}
 
 function addContact() {
   var name = $('#contactName').val();
@@ -33,8 +42,8 @@ function addContact() {
     mobile +
     '</span>' +
     '</td></tr>';
-
   $('#contactList').append(html);
+
 }
 
 function edit() {
@@ -68,11 +77,11 @@ function send() {
 
   $('#contactList')
     .find('tr')
-    .each(function() {
+    .each(function () {
       var $tr = $(this);
       contact = {};
 
-      $tr.find('td').each(function() {
+      $tr.find('td').each(function () {
         var name = this.className.replace('edit-', '');
         contact[name] = $(this)
           .find('span')
