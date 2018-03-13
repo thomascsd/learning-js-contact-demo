@@ -52,6 +52,7 @@ function edit() {
 
   $tr.find('.edit-update').show();
   $tr.find('.edit-text').hide();
+  $self.hide();
 }
 
 function update() {
@@ -64,6 +65,8 @@ function update() {
 
   $tr.find('.edit-update').hide();
   $tr.find('.edit-text').show();
+  $self.hide();
+  $('.edit-btn').show();
 }
 
 function changeValue($tr, selector) {
