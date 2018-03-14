@@ -43,6 +43,7 @@ function addContact() {
     '</span>' +
     '</td></tr>';
   $('#contactList').append(html);
+
 }
 
 function edit() {
@@ -74,4 +75,26 @@ function changeValue($tr, selector) {
   var $span = $td.find('span');
 
   $span.html($text.val());
+}
+
+function send() {
+  var contacts = [];
+  var contact = {};
+
+  $('#contactList')
+    .find('tr')
+    .each(function () {
+      var $tr = $(this);
+      contact = {};
+
+      $tr.find('td').each(function () {
+        var name = this.className.replace('edit-', '');
+        contact[name] = $(this)
+          .find('span')
+          .html();
+      });
+
+      contacts.push(contact);
+    });
+  $('#sendText').html(JSON.stringify(contacts));
 }
