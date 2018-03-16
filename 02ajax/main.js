@@ -1,9 +1,17 @@
+var url = 'https://member-819d.restdb.io/rest/contact';
+var httpMethods = {
+  get: 'GET',
+  post: 'POST',
+  put: 'PUT'
+};
 $('#addForm').on('submit', add);
 $('#send').on('click', send);
 $(document).on('click', '.edit-btn', edit);
 $(document).on('click', '.update-btn', update);
 
 $('#addForm').validate();
+
+loadData();
 
 function add(e) {
   e.preventDefault();
@@ -17,33 +25,57 @@ function addContact() {
   var email = $('#email').val();
   var mobile = $('#mobile').val();
 
-  var html =
-    '<tr><td><input type="button" value="edit" class="btn btn-primary edit-btn"/>' +
-    '<input type="button" value="update" class="btn btn-primary update-btn edit-update"/></td>' +
-    '<td class="edit-name">' +
-    '<input type="text" class="edit-update" value="' +
-    name +
-    '" />' +
-    '<span class="edit-text">' +
-    name +
-    '</span>' +
-    '</td><td class="edit-email">' +
-    '<input type="text" class="edit-update" value="' +
-    email +
-    '" />' +
-    '<span class="edit-text">' +
-    email +
-    '</span>' +
-    '</td><td class="edit-mobile">' +
-    '<input type="text" class="edit-update" value="' +
-    mobile +
-    '" />' +
-    '<span class="edit-text">' +
-    mobile +
-    '</span>' +
-    '</td></tr>';
-  $('#contactList').append(html);
+  ajax(
+    httpMethods.post,
+    url,
+    {
+      name: name,
+      email: email,
+      mobile: mobile
+    },
+    loadData
+  );
+}
 
+function loadData() {
+  ajax(httpMethods.get, url, null, createTr);
+}
+
+function createTr(items) {
+  var htmls = [];
+
+  for (let i = 0; i < items.length; i++) {
+    var item = items[i];
+    var html =
+      '<tr><td><input type="button" value="edit" class="btn btn-primary edit-btn"/>' +
+      '<input type="button" value="update" class="btn btn-primary update-btn edit-update"/></td>' +
+      '<td class="edit-name">' +
+      '<input type="text" class="edit-update" value="' +
+      item.name +
+      '" />' +
+      '<span class="edit-text">' +
+      item.name +
+      '</span>' +
+      '</td><td class="edit-email">' +
+      '<input type="text" class="edit-update" value="' +
+      item.email +
+      '" />' +
+      '<span class="edit-text">' +
+      item.email +
+      '</span>' +
+      '</td><td class="edit-mobile">' +
+      '<input type="text" class="edit-update" value="' +
+      item.mobile +
+      '" />' +
+      '<span class="edit-text">' +
+      item.mobile +
+      '</span>' +
+      '</td></tr>';
+
+    htmls.push(html);
+  }
+
+  $('#contactList>tbody').html(htmls.join(''));
 }
 
 function edit() {
@@ -83,11 +115,11 @@ function send() {
 
   $('#contactList')
     .find('tr')
-    .each(function () {
+    .each(function() {
       var $tr = $(this);
       contact = {};
 
-      $tr.find('td').each(function () {
+      $tr.find('td').each(function() {
         var name = this.className.replace('edit-', '');
         contact[name] = $(this)
           .find('span')
@@ -97,4 +129,25 @@ function send() {
       contacts.push(contact);
     });
   $('#sendText').html(JSON.stringify(contacts));
+}
+
+function ajax(method, url, data, callback) {
+  var settings = {
+    crossDomain: true,
+    url: url,
+    method: method,
+    headers: {
+      'content-type': 'application/json',
+      'x-apikey': '5aa7fea3f0a7555103cea428',
+      'cache-control': 'no-cache'
+    },
+    success: callback
+  };
+
+  if (data) {
+    settings.processData = false;
+    settings.data = JSON.stringify(data);
+  }
+
+  $.ajax(settings);
 }
