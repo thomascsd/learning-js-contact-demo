@@ -4,18 +4,19 @@ var httpMethods = {
   post: 'POST',
   put: 'PUT'
 };
-$('#addForm').on('submit', add);
+var $form = $('#addForm');
+$form.on('submit', add);
 $('#send').on('click', send);
 $(document).on('click', '.edit-btn', edit);
 $(document).on('click', '.update-btn', update);
 
-$('#addForm').validate();
+$form.validate();
 
 loadData();
 
 function add(e) {
   e.preventDefault();
-  if ($('#addForm').valid()) {
+  if ($form.valid()) {
     addContact();
   }
 }
@@ -91,14 +92,25 @@ function update() {
   var $self = $(this);
   var $tr = $self.parents('tr');
 
-  changeValue($tr, '.edit-name');
-  changeValue($tr, '.edit-email');
-  changeValue($tr, '.edit-mobile');
+  var name = changeValue($tr, '.edit-name');
+  var email = changeValue($tr, '.edit-email');
+  var mobile = changeValue($tr, '.edit-mobile');
 
   $tr.find('.edit-update').hide();
   $tr.find('.edit-text').show();
   $self.hide();
   $('.edit-btn').show();
+
+  ajax(
+    httpMethods.put,
+    url,
+    {
+      name: name,
+      email: email,
+      mobile: mobile
+    },
+    loadData
+  );
 }
 
 function changeValue($tr, selector) {
@@ -107,6 +119,8 @@ function changeValue($tr, selector) {
   var $span = $td.find('span');
 
   $span.html($text.val());
+
+  return $text.val();
 }
 
 function send() {

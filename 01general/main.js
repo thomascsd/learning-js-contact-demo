@@ -1,13 +1,13 @@
-$('#addForm').on('submit', add);
-$('#send').on('click', send);
+var $form = $('#addForm');
+$form.on('submit', add);
 $(document).on('click', '.edit-btn', edit);
 $(document).on('click', '.update-btn', update);
 
-$('#addForm').validate();
+$form.validate();
 
 function add(e) {
   e.preventDefault();
-  if ($('#addForm').valid()) {
+  if ($form.valid()) {
     addContact();
   }
 }
