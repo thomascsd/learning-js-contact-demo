@@ -1,8 +1,19 @@
 .edit-update {
-    display: none;
+  display: none;
 }
 
 label.error {
-    display: block;
-    color: #f00;
+  display: block;
+  color: #f00;
+}
+
+.add-form-container {
+  box-shadow: 0 2px 6px 0 #ccc;
+  padding: 10px;
+  margin-bottom: 48px;
+  margin-top: 10px;
+}
+
+.contact-container {
+  padding: 10px;
 }

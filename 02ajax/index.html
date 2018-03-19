@@ -12,7 +12,7 @@
 
 <body>
     <div class="container">
-        <div>
+        <div class="add-form-container">
             <form id="addForm" action="" method="post">
                 <div class="form-group">
                     <label for="contactName">name</label>
@@ -29,8 +29,7 @@
                 <input id="add" class="btn btn-primary" type="submit" value="submit">
             </form>
         </div>
-        <hr>
-        <div>
+        <div class="contact-container">
             <table id="contactList" class="table">
                 <thead>
                     <tr>
@@ -40,13 +39,9 @@
                         <th>mobile</th>
                     </tr>
                 </thead>
-<tbody></tbody>
+                <tbody></tbody>
             </table>
         </div>
-        <!-- <div>
-            <pre id="sendText"></pre>
-            <input id="send" type="button" class="btn btn-primary" value="送出">
-        </div> -->
         <script src="../lib/jquery.min.js"></script>
         <script src="../lib/jquery.validate.min.js"></script>
         <script src="main.js"></script>
