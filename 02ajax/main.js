@@ -49,7 +49,11 @@ function createTr(items) {
     var item = items[i];
     var html =
       '<tr><td><input type="button" value="edit" class="btn btn-primary edit-btn"/>' +
-      '<input type="button" value="update" class="btn btn-primary update-btn edit-update"/></td>' +
+      '<input type="button" value="update" class="btn btn-primary update-btn edit-update"/>' +
+      '<input type="hidden" class="objid" value="' +
+      item._id +
+      '"/>' +
+      '</td>' +
       '<td class="edit-name">' +
       '<input type="text" class="edit-update" value="' +
       item.name +
@@ -92,6 +96,7 @@ function update() {
   var $self = $(this);
   var $tr = $self.parents('tr');
 
+  var objid = $tr.find('.objid').val();
   var name = changeValue($tr, '.edit-name');
   var email = changeValue($tr, '.edit-email');
   var mobile = changeValue($tr, '.edit-mobile');
@@ -103,7 +108,7 @@ function update() {
 
   ajax(
     httpMethods.put,
-    url,
+    url + '/' + objid,
     {
       name: name,
       email: email,
