@@ -42,9 +42,38 @@
                 <tbody></tbody>
             </table>
         </div>
+
     </div>
+    <script id="rowItem" type="text/x-handlebars-template">
+        <tr>
+            <td>
+                <input type="button" value="edit" class="btn btn-primary edit-btn" />
+                <input type="button" value="update" class="btn btn-primary update-btn edit-update" />
+                <input type="hidden" class="objid" value="{{_id}}" />
+            </td>
+            <td class="edit-name">
+                <input type="text" class="edit-update" value="{{name}}" />
+                <span class="edit-text">
+                    {{name}}
+                </span>
+            </td>
+            <td class="edit-email">
+                <input type="text" class="edit-update" value="{{email}}" />
+                <span class="edit-text">
+                    {{email}}
+                </span>
+            </td>
+            <td class="edit-mobile">
+                <input type="text" class="edit-update" value="{{mobile}}" />
+                <span class="edit-text">
+                    {{mobile}}
+                </span>
+            </td>
+        </tr>
+    </script>
     <script src="../lib/jquery.min.js"></script>
     <script src="../lib/jquery.validate.min.js"></script>
+    <script src="../lib/handlebars-v4.0.11.js"></script>
     <script src="main.js"></script>
 </body>
 
