@@ -43,44 +43,11 @@ function loadData() {
 }
 
 function createTr(items) {
-  var htmls = [];
+  var source = $('#rowItem').html();
+  var template = Handlebars.compile(source);
+  var html = template({ items: items });
 
-  for (let i = 0; i < items.length; i++) {
-    var item = items[i];
-    var html =
-      '<tr><td><input type="button" value="edit" class="btn btn-primary edit-btn"/>' +
-      '<input type="button" value="update" class="btn btn-primary update-btn edit-update"/>' +
-      '<input type="hidden" class="objid" value="' +
-      item._id +
-      '"/>' +
-      '</td>' +
-      '<td class="edit-name">' +
-      '<input type="text" class="edit-update" value="' +
-      item.name +
-      '" />' +
-      '<span class="edit-text">' +
-      item.name +
-      '</span>' +
-      '</td><td class="edit-email">' +
-      '<input type="text" class="edit-update" value="' +
-      item.email +
-      '" />' +
-      '<span class="edit-text">' +
-      item.email +
-      '</span>' +
-      '</td><td class="edit-mobile">' +
-      '<input type="text" class="edit-update" value="' +
-      item.mobile +
-      '" />' +
-      '<span class="edit-text">' +
-      item.mobile +
-      '</span>' +
-      '</td></tr>';
-
-    htmls.push(html);
-  }
-
-  $('#contactList>tbody').html(htmls.join(''));
+  $('#contactList>tbody').html(html);
 }
 
 function edit() {
