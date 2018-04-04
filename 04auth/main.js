@@ -1,4 +1,19 @@
-var $form = $('#addForm');
+const contactUrl = 'https://member-819d.restdb.io/rest/contact';
+const $form = $('#addForm');
+const role = sessionStorage.getItem('contact-role');
+const roleName={
+  admin: 'admin',
+  viewer: 'viewer'
+};
+
+if (!role) {
+  location.href = 'login.html';
+}
+
+if (role === roleName.admin) {
+
+}
+
 $form.on('submit', add);
 $('#send').on('click', send);
 $(document).on('click', '.edit-btn', edit);
@@ -16,37 +31,32 @@ function add(e) {
 }
 
 function addContact() {
-  var name = $('#contactName').val();
-  var email = $('#email').val();
-  var mobile = $('#mobile').val();
+  const name = $('#contactName').val();
+  const email = $('#email').val();
+  const mobile = $('#mobile').val();
 
-  ajax(
-    httpMethods.post,
-    url,
-    {
-      name: name,
-      email: email,
-      mobile: mobile
-    },
-    loadData
-  );
+  ajax(httpMethods.post, contactUrl, {
+    name: name,
+    email: email,
+    mobile: mobile
+  }).done(loadData);
 }
 
 function loadData() {
-  ajax(httpMethods.get, url, null, createTr);
+  ajax(httpMethods.get, contactUrl).done(createTr);
 }
 
 function createTr(items) {
-  var source = $('#rowItem').html();
-  var template = Handlebars.compile(source);
-  var html = template({ items: items });
+  const source = $('#rowItem').html();
+  const template = Handlebars.compile(source);
+  const html = template({ items: items });
 
   $('#contactList>tbody').html(html);
 }
 
 function edit() {
-  var $self = $(this);
-  var $tr = $self.parents('tr');
+  const $self = $(this);
+  const $tr = $self.parents('tr');
 
   $tr.find('.edit-update').show();
   $tr.find('.edit-text').hide();
@@ -54,35 +64,30 @@ function edit() {
 }
 
 function update() {
-  var $self = $(this);
-  var $tr = $self.parents('tr');
+  const $self = $(this);
+  const $tr = $self.parents('tr');
 
-  var objid = $tr.find('.objid').val();
-  var name = changeValue($tr, '.edit-name');
-  var email = changeValue($tr, '.edit-email');
-  var mobile = changeValue($tr, '.edit-mobile');
+  const objid = $tr.find('.objid').val();
+  const name = changeValue($tr, '.edit-name');
+  const email = changeValue($tr, '.edit-email');
+  const mobile = changeValue($tr, '.edit-mobile');
 
   $tr.find('.edit-update').hide();
   $tr.find('.edit-text').show();
   $self.hide();
   $('.edit-btn').show();
 
-  ajax(
-    httpMethods.put,
-    url + '/' + objid,
-    {
-      name: name,
-      email: email,
-      mobile: mobile
-    },
-    loadData
-  );
+  ajax(httpMethods.put, contactUrl + '/' + objid, {
+    name: name,
+    email: email,
+    mobile: mobile
+  }).done(loadData);
 }
 
 function changeValue($tr, selector) {
-  var $td = $tr.find(selector);
-  var $text = $td.find('input');
-  var $span = $td.find('span');
+  const $td = $tr.find(selector);
+  const $text = $td.find('input');
+  const $span = $td.find('span');
 
   $span.html($text.val());
 

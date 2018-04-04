@@ -1,11 +1,10 @@
-var url = 'https://member-819d.restdb.io/rest/contact';
 var httpMethods = {
   get: 'GET',
   post: 'POST',
   put: 'PUT'
 };
 
-function ajax(method, url, data, callback) {
+function ajax(method, url, data) {
   var settings = {
     crossDomain: true,
     url: url,
@@ -14,8 +13,7 @@ function ajax(method, url, data, callback) {
       'content-type': 'application/json',
       'x-apikey': '5aa7fea3f0a7555103cea428',
       'cache-control': 'no-cache'
-    },
-    success: callback
+    }
   };
 
   if (data) {
@@ -23,5 +21,5 @@ function ajax(method, url, data, callback) {
     settings.data = JSON.stringify(data);
   }
 
-  $.ajax(settings);
+ return $.ajax(settings);
 }
