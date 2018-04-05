@@ -1,7 +1,8 @@
 const contactUrl = 'https://member-819d.restdb.io/rest/contact';
 const $form = $('#addForm');
+const $formContainer = $('.add-form-container').hide();
 const role = sessionStorage.getItem('contact-role');
-const roleName={
+const roleName = {
   admin: 'admin',
   viewer: 'viewer'
 };
@@ -11,11 +12,10 @@ if (!role) {
 }
 
 if (role === roleName.admin) {
-
+  $formContainer.show();
 }
 
 $form.on('submit', add);
-$('#send').on('click', send);
 $(document).on('click', '.edit-btn', edit);
 $(document).on('click', '.update-btn', update);
 
@@ -49,7 +49,7 @@ function loadData() {
 function createTr(items) {
   const source = $('#rowItem').html();
   const template = Handlebars.compile(source);
-  const html = template({ items: items });
+  const html = template({ items: items, isAdmin: role === roleName.admin });
 
   $('#contactList>tbody').html(html);
 }

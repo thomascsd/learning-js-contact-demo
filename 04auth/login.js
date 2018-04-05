@@ -1,3 +1,5 @@
+$('#login').on('click', login);
+
 function login() {
   const url = 'https://member-819d.restdb.io/rest/contactuser';
 
@@ -8,10 +10,10 @@ function checkUserId(datas) {
   const userId = $('#userId').val();
   const pwd = $('#pwd').val();
 
-  data = datas.filter(item => item.userId === userId && item.password === pwd);
+  datas = datas.filter(item => item.userId === userId && item.password === pwd);
 
-  if (data) {
-    sessionStorage.setItem('contact-role', data.role[0]);
+  if (datas && datas.length) {
+    sessionStorage.setItem('contact-role', datas[0].role[0].roleName);
     location.href = 'index.html';
   }
 }
