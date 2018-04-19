@@ -4,14 +4,13 @@
   "description": "",
   "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "gulp": "gulp"
   },
   "keywords": [],
   "author": "thomascsd808@gmail.com",
   "license": "MIT",
-  "dependencies": {
-    "handlebars": "^4.0.11",
-    "jquery": "^3.3.1",
-    "jquery-validation": "^1.17.0"
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-html-replace": "^1.6.2"
   }
 }
