@@ -7,7 +7,7 @@ const roleName = {
   viewer: 'viewer'
 };
 
-if (!role) {
+if (!role && location.pathname.indexOf('login.html') == -1) {
   location.href = 'login.html';
 }
 
