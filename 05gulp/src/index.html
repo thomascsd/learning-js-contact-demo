@@ -48,7 +48,7 @@
         {{#each items}}
         <tr>
             <td>
-                {{#if isAdmin}}
+                {{#if ../isAdmin}}
                 <input type="button" value="edit" class="btn btn-primary edit-btn" />
                 <input type="button" value="update" class="btn btn-primary update-btn edit-update" /> {{/if}}
                 <input type="hidden" class="objid" value="{{_id}}" />
