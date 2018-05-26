@@ -3,8 +3,8 @@ import {
   Handlebars
 } from 'handlebars';
 import {
-  ajax,
-  httpMethods
+  httpMethods,
+  ajax
 } from './shared';
 import 'jquery-validation';
 

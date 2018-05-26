@@ -15,7 +15,7 @@ const config = {
             'handlebars': 'handlebars/dist/handlebars.js'
         }
     },
-    mode: 'production'
+    mode: 'development'
 };
 
 module.exports = config;

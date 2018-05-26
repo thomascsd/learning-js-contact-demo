@@ -1,3 +1,5 @@
+import * as $ from 'jquery';
+
 export const httpMethods = {
   get: 'GET',
   post: 'POST',
@@ -5,7 +7,7 @@ export const httpMethods = {
 };
 
 export function ajax(method, url, data) {
-  var settings = {
+  const settings = {
     crossDomain: true,
     url: url,
     method: method,
