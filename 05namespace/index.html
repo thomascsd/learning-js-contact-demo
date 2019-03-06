@@ -1,4 +1,4 @@
-][<_ 屋ㄙㄩㄜㄙㄟㄝ!DOCTYPE html>
+<!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8" />
@@ -75,8 +75,40 @@
         </table>
       </div>
     </div>
+    <script id="rowItem" type="text/x-handlebars-template">
+      {{#each items}}
+      <tr>
+          <td>
+              {{#if ../isAdmin}}
+              <input type="button" value="edit" class="btn btn-primary edit-btn" />
+              <input type="button" value="update" class="btn btn-primary update-btn edit-update" /> {{/if}}
+              <input type="hidden" class="objid" value="{{_id}}" />
+          </td>
+          <td class="edit-name">
+              <input type="text" class="edit-update" value="{{name}}" />
+              <span class="edit-text">
+                  {{name}}
+              </span>
+          </td>
+          <td class="edit-email">
+              <input type="text" class="edit-update" value="{{email}}" />
+              <span class="edit-text">
+                  {{email}}
+              </span>
+          </td>
+          <td class="edit-mobile">
+              <input type="text" class="edit-update" value="{{mobile}}" />
+              <span class="edit-text">
+                  {{mobile}}
+              </span>
+          </td>
+      </tr>
+      {{/each}}
+    </script>
     <script src="../lib/jquery.min.js"></script>
     <script src="../lib/jquery.validate.min.js"></script>
+    <script src="../lib/handlebars-v4.0.11.js"></script>
+    <script src="shared.js"></script>
     <script src="main.js"></script>
   </body>
 </html>
