@@ -17,6 +17,6 @@
   "dependencies": {
     "handlebars": "^4.7.3",
     "jquery": "^3.5.0",
-    "jquery-validation": "^1.19.1"
+    "jquery-validation": "^1.19.4"
   }
 }
